@@ -1,24 +1,23 @@
-Voici la page d'accueil redesignée avec des couleurs modernes, des noms de boutons et un nom principal entièrement changés.
-```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NexusConvert – Transformez vos documents</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>NexusConvert – Refonte totale | Studio de transformation</title>
   <style>
-    /* ----- NOUVELLE PALETTE MODERNE ----- */
+    /* ----- FONDAMENTAUX : palette réinventée + disposition modulaire ----- */
     :root {
-      --primary: #0F172A;       /* bleu nuit profond – élégant */
-      --primary-glow: #1E293B;
-      --accent: #F97316;        /* orange vif & dynamique */
-      --accent-light: #FFEDD5;
-      --bg: #FAF9F6;            /* beige clair & naturel */
-      --card: #FFFFFF;
-      --text: #0F172A;
-      --text-light: #475569;
-      --border: #E2E8F0;
-      --success: #10B981;
+      --deep: #0B1120;
+      --radiant: #FF4D4D;      /* rouge-orange audacieux */
+      --radiant-glow: #FF6B6B;
+      --surface: #FFFFFF;
+      --surface-alt: #F8FAFE;
+      --text-main: #0A0F1C;
+      --text-soft: #4A5568;
+      --border-light: #E9EDF2;
+      --shadow-sm: 0 12px 30px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 20px 35px -12px rgba(0, 0, 0, 0.12);
+      --accent-bg: #FFF1F0;
     }
 
     * {
@@ -28,391 +27,485 @@ Voici la page d'accueil redesignée avec des couleurs modernes, des noms de bout
     }
 
     body {
-      background: var(--bg);
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      color: var(--text);
-      line-height: 1.5;
+      background: linear-gradient(145deg, #FEFDF9 0%, #F5F7FC 100%);
+      font-family: 'Inter', system-ui, 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      color: var(--text-main);
+      line-height: 1.4;
     }
 
-    /* Typographie moderne */
     .container {
-      max-width: 1200px;
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 48px 24px 72px;
+      padding: 48px 32px 64px;
     }
 
-    /* Hero section : disposition asymétrique plus aérée */
-    .hero {
+    /* ========== NOUVELLE DISPOSITION : HERO + ZONE DE CONVERSION CENTRALE ========== */
+    /* Approche asymétrique mais intuitive : titre à gauche, espace convert au centre-droite */
+    .layout-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 48px;
       align-items: center;
-      margin-bottom: 72px;
+      margin-bottom: 80px;
     }
 
-    /* Titre principal + badge */
-    .badge {
-      display: inline-block;
-      background: var(--accent-light);
-      color: var(--accent);
-      font-size: 0.85rem;
+    /* Côté branding / message principal */
+    .brand-block {
+      position: relative;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 77, 77, 0.12);
+      backdrop-filter: blur(2px);
+      padding: 6px 16px 6px 12px;
+      border-radius: 60px;
+      font-size: 0.8rem;
       font-weight: 600;
-      padding: 6px 14px;
-      border-radius: 40px;
+      color: var(--radiant);
       letter-spacing: 0.3px;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     h1 {
-      font-size: 52px;
+      font-size: 56px;
       font-weight: 800;
-      line-height: 1.2;
-      letter-spacing: -1px;
-      background: linear-gradient(135deg, #0F172A 0%, #F97316 80%);
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      background: linear-gradient(125deg, #0B1120 20%, #FF4D4D 70%);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
       margin-bottom: 20px;
     }
 
-    .hero-description {
+    .lead {
       font-size: 1.2rem;
-      color: var(--text-light);
+      color: var(--text-soft);
       margin-bottom: 32px;
       max-width: 90%;
+      border-left: 3px solid var(--radiant);
+      padding-left: 20px;
+      font-weight: 450;
     }
 
-    .stats-row {
+    .trust-badge {
       display: flex;
-      gap: 28px;
-      margin-top: 16px;
+      gap: 24px;
+      margin-top: 24px;
     }
 
-    .stat {
+    .trust-item {
       display: flex;
-      flex-direction: column;
-    }
-
-    .stat-number {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--primary);
-    }
-
-    .stat-label {
+      align-items: center;
+      gap: 8px;
+      background: white;
+      padding: 6px 16px;
+      border-radius: 100px;
+      box-shadow: var(--shadow-sm);
       font-size: 0.85rem;
-      color: var(--text-light);
-    }
-
-    /* Carte de conversion – design moderne & épuré */
-    .convert-card {
-      background: var(--card);
-      border-radius: 32px;
-      padding: 36px 32px;
-      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.12);
-      border: 1px solid rgba(249, 115, 22, 0.15);
-      transition: transform 0.2s ease;
-    }
-
-    .convert-card:hover {
-      transform: translateY(-3px);
-    }
-
-    .dropzone {
-      background: #FEFCF8;
-      border: 2px dashed #E2E8F0;
-      border-radius: 24px;
-      padding: 36px 20px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .dropzone:hover {
-      border-color: var(--accent);
-      background: #FFF9F0;
-    }
-
-    .dropzone p {
-      color: var(--text-light);
       font-weight: 500;
     }
 
-    .dropzone .small-hint {
-      font-size: 0.8rem;
-      margin-top: 8px;
-      color: #94A3B8;
+    /* ========== CARTE DE CONVERSION REFONDE : INPUTS ET DOCS ORGANISÉS DIFFÉREMMENT ========== */
+    .convert-studio {
+      background: var(--surface);
+      border-radius: 48px;
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      border: 1px solid rgba(255, 77, 77, 0.2);
+      transition: transform 0.2s;
     }
 
-    input[type="file"] {
+    .convert-studio:hover {
+      transform: translateY(-5px);
+    }
+
+    /* zone de dépôt de fichier revisitée : plus large, avec icône et zone de texte */
+    .file-zone {
+      background: var(--surface-alt);
+      padding: 32px 28px;
+      border-bottom: 1px solid var(--border-light);
+      text-align: center;
+    }
+
+    .drop-area {
+      background: white;
+      border: 2px dashed #E2E8F0;
+      border-radius: 32px;
+      padding: 32px 20px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .drop-area:hover {
+      border-color: var(--radiant);
+      background: #FFFBF9;
+    }
+
+    .doc-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .drop-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+      color: var(--deep);
+    }
+
+    .drop-sub {
+      font-size: 0.8rem;
+      color: #7F8C9A;
+      margin-bottom: 16px;
+    }
+
+    .fake-browse {
+      display: inline-block;
+      background: #F1F5F9;
+      padding: 8px 24px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--deep);
+      transition: 0.2s;
+    }
+
+    .fake-browse:hover {
+      background: var(--radiant);
+      color: white;
+    }
+
+    input#fileInput {
       display: none;
     }
 
-    .custom-file-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 60px;
-      padding: 8px 20px;
-      font-size: 0.9rem;
+    #fileNameDisplay {
+      margin-top: 14px;
+      font-size: 0.8rem;
       font-weight: 500;
-      margin-top: 16px;
-      cursor: pointer;
+      background: #EEF2FF;
       display: inline-block;
-      transition: 0.2s;
-      color: var(--primary);
+      padding: 5px 14px;
+      border-radius: 40px;
+      color: var(--radiant);
     }
 
-    .custom-file-btn:hover {
-      background: var(--accent-light);
-      border-color: var(--accent);
+    /* zone des paramètres : disposition horizontale pour select et option plus moderne */
+    .params-panel {
+      padding: 28px 28px 32px;
+      background: white;
     }
 
-    /* Sélecteur style raffiné */
-    .select-group {
-      margin: 24px 0 20px;
+    .format-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-end;
+      margin-bottom: 28px;
+    }
+
+    .format-group {
+      flex: 2;
+      min-width: 180px;
+    }
+
+    .format-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-soft);
+      margin-bottom: 8px;
     }
 
     select {
       width: 100%;
-      padding: 16px 18px;
-      border-radius: 60px;
-      border: 1px solid var(--border);
+      padding: 14px 18px;
+      border-radius: 40px;
+      border: 1px solid var(--border-light);
       background: white;
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 500;
-      color: var(--text);
+      color: var(--deep);
       cursor: pointer;
       transition: 0.2s;
       outline: none;
     }
 
     select:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+      border-color: var(--radiant);
+      box-shadow: 0 0 0 3px rgba(255, 77, 77, 0.2);
     }
 
-    /* Bouton principal (NOUVEAU NOM + STYLE DYNAMIQUE) */
-    .btn-convert {
+    .option-badge {
+      flex: 1;
+    }
+
+    /* BOUTON PRINCIPAL : nom revisité et design pop */
+    .btn-nexus {
       width: 100%;
-      background: var(--primary);
-      color: white;
+      background: linear-gradient(105deg, #FF4D4D 0%, #E63E3E 100%);
       border: none;
-      padding: 16px;
+      padding: 18px 12px;
       border-radius: 60px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.2s;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      background: linear-gradient(95deg, #0F172A 0%, #1E293B 100%);
-      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.15);
-    }
-
-    .btn-convert:hover {
-      background: linear-gradient(95deg, #F97316 0%, #EA580C 100%);
-      transform: scale(0.98);
-      box-shadow: 0 12px 22px rgba(249, 115, 22, 0.3);
-    }
-
-    /* Section features (nouveaux noms + icônes modernes) */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-      margin-top: 40px;
-    }
-
-    .feature-card {
-      background: white;
-      border-radius: 28px;
-      padding: 28px 20px;
-      text-align: center;
+      gap: 14px;
+      cursor: pointer;
       transition: all 0.25s;
-      border: 1px solid var(--border);
-      box-shadow: 0 5px 12px rgba(0,0,0,0.02);
+      box-shadow: 0 10px 20px -8px rgba(255, 77, 77, 0.4);
+      margin-top: 12px;
     }
 
-    .feature-card:hover {
-      transform: translateY(-6px);
-      border-color: var(--accent);
-      box-shadow: 0 20px 30px -12px rgba(249, 115, 22, 0.2);
+    .btn-nexus:hover {
+      background: linear-gradient(105deg, #E63E3E 0%, #CC2F2F 100%);
+      transform: scale(0.97);
+      box-shadow: 0 8px 18px rgba(255, 77, 77, 0.5);
     }
 
-    .feature-icon {
-      font-size: 2.8rem;
-      margin-bottom: 16px;
+    /* section avantages : nouvelle disposition en 3 colonnes mais alignées différemment */
+    .value-props {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: space-between;
+      margin-top: 48px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(4px);
+      border-radius: 64px;
+      padding: 40px 32px;
+      border: 1px solid rgba(255, 77, 77, 0.15);
     }
 
-    .feature-title {
+    .prop-card {
+      flex: 1;
+      text-align: center;
+      padding: 8px 12px;
+    }
+
+    .prop-icon {
+      font-size: 40px;
+      background: var(--accent-bg);
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 60px;
+      margin: 0 auto 18px;
+      box-shadow: 0 8px 14px rgba(0,0,0,0.02);
+    }
+
+    .prop-title {
       font-size: 1.3rem;
       font-weight: 700;
       margin-bottom: 8px;
-      color: var(--primary);
+      background: linear-gradient(135deg, #0B1120, #FF4D4D);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
     }
 
-    .feature-desc {
+    .prop-desc {
       font-size: 0.9rem;
-      color: var(--text-light);
+      color: var(--text-soft);
     }
 
-    /* Footer / bas de page élégant */
+    /* footer discret */
     .footer-note {
-      margin-top: 70px;
+      margin-top: 60px;
       text-align: center;
-      font-size: 0.85rem;
-      color: #94A3B8;
-      border-top: 1px solid var(--border);
-      padding-top: 32px;
+      font-size: 0.8rem;
+      color: #8D9AAC;
+      border-top: 1px solid #EFF3F8;
+      padding-top: 28px;
     }
 
-    /* Responsive */
-    @media (max-width: 800px) {
-      .hero {
+    @media (max-width: 880px) {
+      .layout-grid {
         grid-template-columns: 1fr;
         gap: 32px;
       }
       h1 {
-        font-size: 38px;
+        font-size: 44px;
       }
-      .hero-description {
+      .lead {
         max-width: 100%;
       }
-      .features {
-        grid-template-columns: 1fr;
-        gap: 20px;
+      .value-props {
+        flex-direction: column;
+        gap: 24px;
+        padding: 32px 24px;
       }
       .container {
         padding: 32px 20px;
       }
     }
-
-    /* File name display */
-    #file-name {
-      font-size: 0.8rem;
-      color: var(--accent);
-      margin-top: 8px;
-      font-weight: 500;
-    }
   </style>
 </head>
 <body>
-
 <div class="container">
-  <div class="hero">
-    <!-- Colonne gauche : contenu principal renommé + badge -->
-    <div>
-      <span class="badge">✨ nouvelle expérience ✨</span>
+  <!-- NOUVELLE DISPOSITION : Titre / contexte à gauche, zone de conversion à droite -->
+  <div class="layout-grid">
+    <!-- Partie gauche : marque, nouveau nom principal, messages -->
+    <div class="brand-block">
+      <div class="eyebrow">
+        <span>🔥 NexusCore 2.0</span>
+      </div>
       <h1>
         NexusConvert<br>
-        <span style="background: linear-gradient(135deg, #F97316, #EA580C); background-clip: text; -webkit-background-clip: text; color: transparent;">documents illimités</span>
+        <span style="background: linear-gradient(125deg, #FF4D4D, #B91C1C); background-clip: text; -webkit-background-clip: text; color: transparent;">studio de fichiers</span>
       </h1>
-      <p class="hero-description">
-        La solution moderne pour transformer vos fichiers entre tous formats.<br>
-        Rapide, sécurisé, et sans inscription.
+      <p class="lead">
+        Redéfinissez la manière dont vous transformez vos documents. <br>
+        Glissez, choisissez, métamorphosez — l'outil nouvelle génération.
       </p>
-      <div class="stats-row">
-        <div class="stat">
-          <span class="stat-number">10k+</span>
-          <span class="stat-label">conversions/jour</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">100%</span>
-          <span class="stat-label">confidentiel</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">⚡ 2s</span>
-          <span class="stat-label">traitement moyen</span>
-        </div>
+      <div class="trust-badge">
+        <span class="trust-item">⚡ 0.8s en moyenne</span>
+        <span class="trust-item">🔒 Chiffré</span>
+        <span class="trust-item">🌍 Export cloud</span>
       </div>
     </div>
 
-    <!-- Colonne droite : Carte de conversion (boutons renommés) -->
-    <div class="convert-card">
+    <!-- Carte principale : disposition totalement repensée pour les inputs / docs -->
+    <div class="convert-studio">
       <form method="post" action="/convert" enctype="multipart/form-data">
-        <div class="dropzone" id="dropzone">
-          <div style="font-size: 2rem; margin-bottom: 8px;">📂</div>
-          <p>Déposez votre fichier ici</p>
-          <p class="small-hint">ou utilisez le bouton ci-dessous</p>
-          <!-- Champ input file masqué, mais fonctionnel -->
-          <input type="file" name="file" id="fileInput" required>
-          <label for="fileInput" class="custom-file-btn">📎 Parcourir mon ordinateur</label>
-          <div id="file-name"></div>
+        <!-- zone doc : nouvel emplacement et nouveau comportement -->
+        <div class="file-zone">
+          <div class="drop-area" id="dropZone">
+            <div class="doc-icon">📄📎</div>
+            <div class="drop-title">Déposez votre document ici</div>
+            <div class="drop-sub">PDF, Word, Excel, PPT — jusqu'à 50 Mo</div>
+            <div class="fake-browse" id="fakeBrowseBtn">📂 Parcourir mon poste</div>
+            <input type="file" name="file" id="fileInput" required>
+            <div id="fileNameDisplay" style="display: none;"></div>
+          </div>
         </div>
 
-        <div class="select-group">
-          <select name="to" required>
-            <option value="">🎯 Choisir une destination</option>
-            <option value="pdf">📄 Document PDF</option>
-            <option value="docx">📝 Fichier Word</option>
-            <option value="xlsx">📊 Tableur Excel</option>
-            <option value="pptx">📽️ Présentation PowerPoint</option>
-          </select>
+        <!-- paramètres : disposition différente, select + options claires -->
+        <div class="params-panel">
+          <div class="format-row">
+            <div class="format-group">
+              <label>📌 FORMAT CIBLE</label>
+              <select name="to" required>
+                <option value="" disabled selected>— Choisissez une destination —</option>
+                <option value="pdf">📑 Document PDF (universel)</option>
+                <option value="docx">📝 Word (DOCX)</option>
+                <option value="xlsx">📊 Excel (XLSX)</option>
+                <option value="pptx">🎞️ PowerPoint (PPTX)</option>
+              </select>
+            </div>
+            <div class="option-badge">
+              <label style="visibility: hidden;">.</label>
+              <div style="font-size: 0.8rem; background: #F1F5F9; border-radius: 40px; padding: 8px 14px; text-align: center; margin-top: 4px;">
+                ⚙️ Conversion pro
+              </div>
+            </div>
+          </div>
+          <!-- Bouton principal NOUVEAU NOM : "Métamorphoser le fichier" -->
+          <button type="submit" class="btn-nexus">
+            ✨ Métamorphoser le fichier ✨
+          </button>
+          <div style="font-size: 0.7rem; text-align: center; margin-top: 16px; color: #7A8799;">
+            Aucune donnée conservée – transformation instantanée.
+          </div>
         </div>
-
-        <!-- Bouton principal renommé : "Lancer la métamorphose" au lieu de "Convertir" -->
-        <button type="submit" class="btn-convert">
-          <span>✨</span> Lancer la métamorphose <span>⚡</span>
-        </button>
       </form>
     </div>
   </div>
 
-  <!-- Section features : noms des cartes entièrement modifiés -->
-  <div class="features">
-    <div class="feature-card">
-      <div class="feature-icon">🌊</div>
-      <div class="feature-title">Fusion fluide</div>
-      <div class="feature-desc">Conversion instantanée sans perte de qualité, quel que soit le format.</div>
+  <!-- Section features : nom des cartes, contenu et icônes revisités -->
+  <div class="value-props">
+    <div class="prop-card">
+      <div class="prop-icon">🌀</div>
+      <div class="prop-title">Tourbillon rapide</div>
+      <div class="prop-desc">Optimisation multi-thread, vos fichiers convertis en moins de 2 secondes.</div>
     </div>
-    <div class="feature-card">
-      <div class="feature-icon">🛡️</div>
-      <div class="feature-title">Confiance absolue</div>
-      <div class="feature-desc">Chiffrement SSL & suppression automatique après 1 heure.</div>
+    <div class="prop-card">
+      <div class="prop-icon">🛡️</div>
+      <div class="prop-title">Sanctuaire privé</div>
+      <div class="prop-desc">Chiffrement de bout en bout + suppression automatique post-conversion.</div>
     </div>
-    <div class="feature-card">
-      <div class="feature-icon">🌍</div>
-      <div class="feature-title">Export universel</div>
-      <div class="feature-desc">Téléchargez ou partagez le résultat par lien direct.</div>
+    <div class="prop-card">
+      <div class="prop-icon">🚀</div>
+      <div class="prop-title">Export fusion</div>
+      <div class="prop-desc">Téléchargement direct ou partage via lien sécurisé.</div>
     </div>
   </div>
-  
+
   <div class="footer-note">
-    ✨ NexusConvert – La refonte intelligente. Vos fichiers, votre liberté.
+    ✦ NexusConvert – l'élégance de la transformation documentaire ✦
   </div>
 </div>
 
-<!-- petite interactivité pour afficher le nom du fichier (amélioration UX) -->
+<!-- script pour améliorer l'UX du drag & drop et afficher le nom du fichier -->
 <script>
   const fileInput = document.getElementById('fileInput');
-  const fileNameSpan = document.getElementById('file-name');
-  const dropzoneDiv = document.getElementById('dropzone');
+  const dropZoneDiv = document.getElementById('dropZone');
+  const fakeBrowseBtn = document.getElementById('fakeBrowseBtn');
+  const fileNameDisplay = document.getElementById('fileNameDisplay');
 
-  fileInput.addEventListener('change', function(e) {
-    if (fileInput.files.length > 0) {
-      fileNameSpan.innerHTML = `✅ Fichier sélectionné : ${fileInput.files[0].name}`;
-    } else {
-      fileNameSpan.innerHTML = '';
-    }
-  });
-
-  // Amélioration : clic sur la dropzone pour déclencher le file input
-  dropzoneDiv.addEventListener('click', (e) => {
-    // éviter de déclencher deux fois si on clique sur le label ou l'input
-    if (e.target !== fileInput && e.target !== document.querySelector('label[for="fileInput"]')) {
-      fileInput.click();
-    }
-  });
-  // éviter la propagation pour que le label fonctionne normalement
-  const customBtn = document.querySelector('.custom-file-btn');
-  if(customBtn) {
-    customBtn.addEventListener('click', (e) => {
+  // Ouvrir la fenêtre de sélection de fichier au clic sur la zone ou le bouton personnalisé
+  function triggerFileInput(e) {
+    if(e) e.stopPropagation();
+    fileInput.click();
+  }
+  dropZoneDiv.addEventListener('click', triggerFileInput);
+  if(fakeBrowseBtn) {
+    fakeBrowseBtn.addEventListener('click', (e) => {
       e.stopPropagation();
+      fileInput.click();
     });
   }
+
+  // Afficher le nom du fichier sélectionné
+  fileInput.addEventListener('change', () => {
+    if (fileInput.files.length > 0) {
+      const fileName = fileInput.files[0].name;
+      fileNameDisplay.textContent = `✅ ${fileName}`;
+      fileNameDisplay.style.display = 'inline-block';
+      fileNameDisplay.style.backgroundColor = '#FFF0ED';
+      fileNameDisplay.style.padding = '6px 16px';
+      fileNameDisplay.style.borderRadius = '40px';
+      fileNameDisplay.style.marginTop = '12px';
+      fileNameDisplay.style.fontWeight = '500';
+    } else {
+      fileNameDisplay.style.display = 'none';
+    }
+  });
+
+  // DRAG & DROP amélioré – pour une expérience moderne (optionnel mais cohérent)
+  dropZoneDiv.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropZoneDiv.style.borderColor = '#FF4D4D';
+    dropZoneDiv.style.backgroundColor = '#FFF9F5';
+  });
+  dropZoneDiv.addEventListener('dragleave', (e) => {
+    e.preventDefault();
+    dropZoneDiv.style.borderColor = '#E2E8F0';
+    dropZoneDiv.style.backgroundColor = 'white';
+  });
+  dropZoneDiv.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZoneDiv.style.borderColor = '#E2E8F0';
+    dropZoneDiv.style.backgroundColor = 'white';
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      fileInput.files = files; // assigne les fichiers déposés
+      // déclenche l'événement change manuellement pour afficher le nom
+      const changeEvent = new Event('change', { bubbles: true });
+      fileInput.dispatchEvent(changeEvent);
+    }
+  });
 </script>
 </body>
 </html>
-```
