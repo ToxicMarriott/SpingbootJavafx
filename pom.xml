@@ -12,7 +12,7 @@
     <relativePath/>
   </parent>
 
-  <groupId>com.ritchy</groupId>
+  <groupId>com.Marriott</groupId>
   <artifactId>pdfoffice</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>pdfoffice</name>
